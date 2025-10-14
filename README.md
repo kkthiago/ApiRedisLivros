@@ -1,9 +1,5 @@
 # 📚 API de Livros
 
-\<div align="center"\>
-
-\</div\>
-
 Uma API RESTful construída com Python e FastAPI para gerenciar uma biblioteca virtual, utilizando Redis para cache.
 
 ## ✨ Sobre o Projeto
