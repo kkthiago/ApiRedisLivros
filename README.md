@@ -1,196 +1,177 @@
-# 📚 API de Livros
+<h1 align="center">📚 API de Livros</h1>
 
-Uma API RESTful construída com Python e FastAPI para gerenciar uma biblioteca virtual, utilizando Redis como cache para otimizar as consultas.
+<p align="center">
+  <em>Uma API RESTful construída com FastAPI, Redis e Docker Compose</em><br>
+  <strong>CRUD completo com persistência de dados e documentação interativa</strong>
+</p>
 
-## ✨ Sobre o Projeto
-
-Este projeto é uma API para realizar operações CRUD (Criar, Ler, Atualizar, Deletar) em uma coleção de livros. É uma demonstração prática do uso de FastAPI para criar APIs rápidas, eficientes e assíncronas.
-
-### Principais Funcionalidades:
-
-- ✅ Listar todos os livros.
-- ✅ Buscar um livro específico por ID.
-- ✅ Adicionar um novo livro.
-- ✅ Atualizar informações de um livro existente.
-- ✅ Deletar um livro.
-- ✅ Cache de dados em Redis para performance.
-
-### 🛠️ Tecnologias Utilizadas:
-
-- 🐍 **[Python 3.9+](https://www.python.org/)**
-- 🚀 **[FastAPI](https://fastapi.tiangolo.com/)**
-- ⚙️ **[Uvicorn](https://www.uvicorn.org/)**
-- 💾 **[Redis](https://redis.io/)**
-- 🐳 **[Docker](https://www.docker.com/)** (Opcional, para o Redis)
+<p align="center">
+  <!-- Badges -->
+  <img src="https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge" alt="Versão">
+  <img src="https://img.shields.io/badge/status-em%20desenvolvimento-yellow?style=for-the-badge" alt="Status">
+  <img src="https://img.shields.io/badge/python-3.9%2B-blue?style=for-the-badge&logo=python" alt="Python">
+  <img src="https://img.shields.io/badge/fastapi-0.111+-green?style=for-the-badge&logo=fastapi" alt="FastAPI">
+  <img src="https://img.shields.io/badge/redis-database-red?style=for-the-badge&logo=redis" alt="Redis">
+  <img src="https://img.shields.io/badge/docker-ready-0db7ed?style=for-the-badge&logo=docker" alt="Docker">
+  <img src="https://img.shields.io/github/license/seu-usuario/seu-repositorio?style=for-the-badge" alt="Licença">
+</p>
 
 ---
 
-## 🚀 Começando
+## ✨ Sobre o Projeto
 
-Siga estas instruções para ter uma cópia do projeto rodando na sua máquina local para desenvolvimento e testes.
+Este projeto é uma **API REST** para realizar operações CRUD (Criar, Ler, Atualizar e Deletar) em uma coleção de livros.  
+Ele demonstra o uso do **FastAPI** com **Redis** em um ambiente **containerizado com Docker Compose**.
 
-### Pré-requisitos
+### 🧩 Funcionalidades
 
-- **Python 3.9** ou superior.
-- **Git** para clonar o repositório.
-- Um gerenciador de pacotes como `pip`.
-- **Redis** ou **Docker** em execução.
+✅ Listar todos os livros  
+✅ Buscar livro por ID  
+✅ Adicionar novo livro  
+✅ Atualizar informações de livro existente  
+✅ Deletar livro  
+✅ Persistência de dados no Redis
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+| Tecnologia            | Descrição                          |
+| --------------------- | ---------------------------------- |
+| 🐍 **Python 3.9+**    | Linguagem principal                |
+| 🚀 **FastAPI**        | Framework web moderno e assíncrono |
+| ⚙️ **Uvicorn**        | Servidor ASGI                      |
+| 💾 **Redis**          | Banco de dados em memória          |
+| 🐳 **Docker**         | Containerização                    |
+| 📦 **Docker Compose** | Orquestração de contêineres        |
+
+---
+
+## 🚀 Como Rodar (Ambiente Docker Compose)
+
+### 📋 Pré-requisitos
+
+- Docker
+- Docker Compose
+- Git
 
 ### ⚙️ Instalação e Configuração
 
-1.  **Clone o repositório:**
+**1️⃣ Clone o repositório:**
 
-    ```sh
-    git clone https://github.com/seu-usuario/seu-repositorio.git
-    cd seu-repositorio
-    ```
+```bash
+git clone https://github.com/seu-usuario/seu-repositorio.git
+cd seu-repositorio
+```
 
-2.  **Crie e ative um ambiente virtual:**
+**2️⃣ Configure o ambiente:**
 
-    ```sh
-    python -m venv venv
-    source venv/bin/activate  # No Windows, use: `venv\Scripts\activate`
-    ```
+```bash
+cp .env.example .env
+```
 
-3.  **Instale as dependências:**
+> 💡 Os valores padrão de `.env.example` já são suficientes para rodar localmente.
 
-    ```sh
-    pip install -r requirements.txt
-    ```
+**3️⃣ Suba os contêineres:**
 
-4.  **Configure e inicie o Redis:**
+```bash
+docker-compose up --build
+```
 
-    Você precisa de uma instância do Redis rodando na porta padrão (`6379`). A forma mais fácil é usando Docker.
-
-    **Opção 1: Docker (Recomendado)**
-    Se você tem Docker instalado, execute o seguinte comando no seu terminal:
-
-    ```sh
-    docker run --name redis-livros -p 6379:6379 -d redis
-    ```
-
-    Isso irá baixar a imagem do Redis e iniciar um contêiner em segundo plano.
-
-    **Opção 2: Instalação Local**
-    Se preferir, instale o Redis diretamente no seu sistema operacional. Siga as instruções no [site oficial do Redis](https://www.google.com/search?q=https://redis.io/docs/getting-started/installation/).
-
-5.  **Inicie o servidor da API:**
-
-    ```sh
-    uvicorn main:app --reload --port 8000
-    ```
-
-6.  A API estará disponível em `http://localhost:8000`.
-
-7.  Acesse a documentação interativa (Swagger UI) em `http://localhost:8000/docs`.
+Acesse a API em:
+👉 [http://localhost:8080](http://localhost:8080)
+Documentação interativa (Swagger UI):
+👉 [http://localhost:8080/docs](http://localhost:8080/docs)
 
 ---
 
 ## 📡 Endpoints da API
 
-A API segue os padrões REST e utiliza JSON para as requisições e respostas.
-
-#### `GET /`
-
-Retorna uma mensagem de boas-vindas.
-
-#### `GET /livros`
-
-Retorna uma lista de todos os livros cadastrados.
-
-#### `GET /livros/{livro_id}`
-
-Retorna os detalhes de um livro específico.
-
-#### `POST /livros`
-
-Cria um novo livro. O livro criado também é salvo no cache do Redis.
-
-#### `PUT /livros/{livro_id}`
-
-Atualiza os detalhes de um livro existente. A atualização também é refletida no cache.
-
-#### `DELETE /livros/{livro_id}`
-
-Deleta um livro. O registro correspondente também é removido do cache.
-
-#### `GET /debug/redis`
-
-Endpoint de depuração para visualizar todas as chaves de livros atualmente no cache do Redis.
+| Método   | Endpoint             | Descrição                                    |
+| -------- | -------------------- | -------------------------------------------- |
+| `GET`    | `/`                  | Retorna uma mensagem de boas-vindas          |
+| `GET`    | `/livros`            | Lista todos os livros                        |
+| `GET`    | `/livros/{livro_id}` | Retorna um livro específico                  |
+| `POST`   | `/livros`            | Cria um novo livro                           |
+| `PUT`    | `/livros/{livro_id}` | Atualiza informações de um livro             |
+| `DELETE` | `/livros/{livro_id}` | Deleta um livro                              |
+| `GET`    | `/debug/redis`       | Mostra todas as chaves e valores armazenados |
 
 ---
 
-### 🧪 Exemplos de Uso com cURL
+## 🧪 Exemplos de Uso (cURL)
 
-Abra um terminal e use os comandos `cURL` abaixo para interagir com a API.
+### ➕ Criar um novo livro
 
-1.  **Criar um novo livro:**
+```bash
+curl -X 'POST' \
+  'http://localhost:8080/livros' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "titulo": "Duna",
+    "author": "Frank Herbert"
+  }'
+```
 
-    ```sh
-    curl -X 'POST' \
-      'http://localhost:8000/livros' \
-      -H 'Content-Type: application/json' \
-      -d '{
-        "titulo": "Duna",
-        "author": "Frank Herbert"
-      }'
-    ```
+### 📚 Listar todos os livros
 
-    _Anote o `livro_id` retornado para usar nos próximos passos._
+```bash
+curl -X 'GET' 'http://localhost:8080/livros'
+```
 
-2.  **Listar todos os livros:**
+### 🔍 Buscar um livro por ID
 
-    ```sh
-    curl -X 'GET' 'http://localhost:8000/livros'
-    ```
+```bash
+curl -X 'GET' 'http://localhost:8080/livros/SEU_LIVRO_ID'
+```
 
-3.  **Buscar um livro específico por ID:**
-    _(Substitua `SEU_LIVRO_ID` pelo ID que você anotou)_
+### 🧠 Verificar cache no Redis
 
-    ```sh
-    curl -X 'GET' 'http://localhost:8000/livros/SEU_LIVRO_ID'
-    ```
+```bash
+curl -X 'GET' 'http://localhost:8080/debug/redis'
+```
 
-4.  **Verificar o cache do Redis:**
-    _(Você verá a chave `livro:SEU_LIVRO_ID` que foi criada)_
+### ✏️ Atualizar um livro
 
-    ```sh
-    curl -X 'GET' 'http://localhost:8000/debug/redis'
-    ```
+```bash
+curl -X 'PUT' \
+  'http://localhost:8080/livros/SEU_LIVRO_ID' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "titulo": "Duna (Edição de Colecionador)"
+  }'
+```
 
-5.  **Atualizar um livro:**
-    _(Substitua `SEU_LIVRO_ID` pelo ID que você anotou)_
+### ❌ Deletar um livro
 
-    ```sh
-    curl -X 'PUT' \
-      'http://localhost:8000/livros/SEU_LIVRO_ID' \
-      -H 'Content-Type: application/json' \
-      -d '{
-        "titulo": "Duna (Edição de Colecionador)"
-      }'
-    ```
-
-6.  **Deletar um livro:**
-    _(Substitua `SEU_LIVRO_ID` pelo ID que você anotou)_
-
-    ```sh
-    curl -X 'DELETE' 'http://localhost:8000/livros/SEU_LIVRO_ID'
-    ```
+```bash
+curl -X 'DELETE' 'http://localhost:8080/livros/SEU_LIVRO_ID'
+```
 
 ---
 
 ## 🤝 Contribuição
 
-Contribuições são o que tornam a comunidade de código aberto um lugar incrível para aprender, inspirar e criar. Qualquer contribuição que você fizer será **muito apreciada**.
+Contribuições são muito bem-vindas!
+Siga os passos abaixo para colaborar:
 
-1.  Faça um _Fork_ do projeto.
-2.  Crie sua _Feature Branch_ (`git checkout -b feature/AmazingFeature`).
-3.  Faça o _Commit_ de suas alterações (`git commit -m 'Add some AmazingFeature'`).
-4.  Faça o _Push_ para a _Branch_ (`git push origin feature/AmazingFeature`).
-5.  Abra um _Pull Request_.
+```bash
+# 1. Faça um fork do projeto
+# 2. Crie sua branch de feature
+git checkout -b feature/nova-feature
+
+# 3. Faça o commit das mudanças
+git commit -m "Adiciona nova feature"
+
+# 4. Envie para o repositório remoto
+git push origin feature/nova-feature
+
+# 5. Abra um Pull Request 🚀
+```
 
 ---
 
-## 📝 Licença
+## 🧠 Autor
 
-Este projeto está licenciado sob a Licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+👤 **Thiago Alves Soares**
+💻 Desenvolvedor Python & FastAPI
